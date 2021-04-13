@@ -211,9 +211,9 @@ namespace Lists
             }
         }
 
-        public void RemoveNElements(int n)
+        public void RemoveNElements(int n)//refactor if in less branching
         {
-            if (Length == 1)
+            if (Length == 1 && n <= Length && n > 0)
             {
                 _root = null;
                 _tail = null;
@@ -227,7 +227,7 @@ namespace Lists
             {
                 throw new ArgumentException("N is incorrect");
             }
-            else if (n == Length)
+            else if (n == Length && n > 0)
             {
                 _root = null;
                 _tail = null;
@@ -257,11 +257,7 @@ namespace Lists
         {
             if (index >= 0 && index < Length)
             {
-                if (n < 0 || n > Length)
-                {
-                    throw new ArgumentException("N is incorrect");
-                }
-                else
+                if (n >= 0 && n <= Length)
                 {
                     if (Length == 1)
                     {
@@ -310,6 +306,10 @@ namespace Lists
 
                         Length -= n;
                     }
+                }
+                else
+                {
+                    throw new ArgumentException("N is incorrect");
                 }
             }
             else if (Length == 0)

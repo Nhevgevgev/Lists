@@ -224,19 +224,28 @@ namespace Lists
             return -1;
         }
 
-        public int RemoveAllElementsByValue(int value)//rewrite with only one memory allocation and 2N difficult
-        {//1 2 3 1 4 1 5 1 temp array
+        public int RemoveAllElementsByValue(int value)
+        {
             int countRemoveElements = 0;
+            int[] tempArray = new int[_array.Length];
+            int tempArrayIndex = 0;
 
             for (int i = 0; i < Length; i++)
             {
-                if (_array[i] == value)
+                if (_array[i] != value)
                 {
-                    RemoveByIndex(i);
-                    --i;
+                    tempArray[tempArrayIndex] = _array[i];
+                    tempArrayIndex++;
+                }
+                else
+                {
                     ++countRemoveElements;
                 }
             }
+
+            _array = tempArray;
+            Length -= countRemoveElements;
+            DownSize();
 
             return countRemoveElements;
         }
@@ -253,7 +262,7 @@ namespace Lists
                     break;
                 }
             }
-            
+
             return result;
         }
 
@@ -449,9 +458,9 @@ namespace Lists
 
         private void Swap(ref int a, ref int b)
         {
-            int tempVaue = a;
+            int tempValue = a;
             a = b;
-            b = tempVaue;
+            b = tempValue;
         }
     }
 }

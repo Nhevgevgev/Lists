@@ -3,7 +3,7 @@ using System;
 
 namespace Lists.Tests
 {
-    public class DoubleLinkedListTests
+    public class DoubleLinkedListTests//Same tests for all lists + 1 test file
     {
         [TestCase(0, new int[] { }, new int[] { 0 })]
         [TestCase(0, new int[] { 1 }, new int[] { 1, 0 })]
